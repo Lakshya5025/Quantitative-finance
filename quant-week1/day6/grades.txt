@@ -1,0 +1,2 @@
+name:1 marks:5,name:3 marks:56,name:2 marks:33,name:5 marks:9,name:z marks:23432,
+Total:23535,Highest:23432,Average:11728.875
