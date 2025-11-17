@@ -1,0 +1,191 @@
+[
+  {
+    "id": 1,
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "rent_price": 50,
+    "price": 450,
+    "copies": 20,
+    "left_copies": 20
+  },
+  {
+    "id": 2,
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "rent_price": 45,
+    "price": 400,
+    "copies": 15,
+    "left_copies": 15
+  },
+  {
+    "id": 3,
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "rent_price": 40,
+    "price": 350,
+    "copies": 18,
+    "left_copies": 18
+  },
+  {
+    "id": 4,
+    "title": "Rich Dad Poor Dad",
+    "author": "Robert T. Kiyosaki",
+    "rent_price": 35,
+    "price": 300,
+    "copies": 25,
+    "left_copies": 25
+  },
+  {
+    "id": 5,
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "rent_price": 60,
+    "price": 500,
+    "copies": 22,
+    "left_copies": 22
+  },
+  {
+    "id": 6,
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "rent_price": 30,
+    "price": 250,
+    "copies": 30,
+    "left_copies": 30
+  },
+  {
+    "id": 7,
+    "title": "Can't Hurt Me",
+    "author": "David Goggins",
+    "rent_price": 55,
+    "price": 480,
+    "copies": 17,
+    "left_copies": 17
+  },
+  {
+    "id": 8,
+    "title": "Think and Grow Rich",
+    "author": "Napoleon Hill",
+    "rent_price": 35,
+    "price": 280,
+    "copies": 19,
+    "left_copies": 19
+  },
+  {
+    "id": 9,
+    "title": "The Subtle Art of Not Giving a F*ck",
+    "author": "Mark Manson",
+    "rent_price": 45,
+    "price": 420,
+    "copies": 20,
+    "left_copies": 20
+  },
+  {
+    "id": 10,
+    "title": "The 7 Habits of Highly Effective People",
+    "author": "Stephen R. Covey",
+    "rent_price": 50,
+    "price": 460,
+    "copies": 18,
+    "left_copies": 18
+  },
+  {
+    "id": 11,
+    "title": "Ikigai",
+    "author": "H\u00e9ctor Garc\u00eda, Francesc Miralles",
+    "rent_price": 30,
+    "price": 260,
+    "copies": 28,
+    "left_copies": 28
+  },
+  {
+    "id": 12,
+    "title": "The Lean Startup",
+    "author": "Eric Ries",
+    "rent_price": 55,
+    "price": 520,
+    "copies": 14,
+    "left_copies": 14
+  },
+  {
+    "id": 13,
+    "title": "Zero to One",
+    "author": "Peter Thiel",
+    "rent_price": 45,
+    "price": 400,
+    "copies": 16,
+    "left_copies": 16
+  },
+  {
+    "id": 14,
+    "title": "Cracking the Coding Interview",
+    "author": "Gayle Laakmann McDowell",
+    "rent_price": 70,
+    "price": 650,
+    "copies": 12,
+    "left_copies": 12
+  },
+  {
+    "id": 15,
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "rent_price": 65,
+    "price": 600,
+    "copies": 15,
+    "left_copies": 15
+  },
+  {
+    "id": 16,
+    "title": "Design Patterns",
+    "author": "Erich Gamma et al.",
+    "rent_price": 80,
+    "price": 750,
+    "copies": 10,
+    "left_copies": 10
+  },
+  {
+    "id": 17,
+    "title": "The Power of Now",
+    "author": "Eckhart Tolle",
+    "rent_price": 40,
+    "price": 320,
+    "copies": 20,
+    "left_copies": 20
+  },
+  {
+    "id": 18,
+    "title": "How to Win Friends and Influence People",
+    "author": "Dale Carnegie",
+    "rent_price": 35,
+    "price": 300,
+    "copies": 24,
+    "left_copies": 24
+  },
+  {
+    "id": 19,
+    "title": "The Monk Who Sold His Ferrari",
+    "author": "Robin Sharma",
+    "rent_price": 35,
+    "price": 280,
+    "copies": 26,
+    "left_copies": 26
+  },
+  {
+    "id": 20,
+    "title": "The Intelligent Investor",
+    "author": "Benjamin Graham",
+    "rent_price": 75,
+    "price": 700,
+    "copies": 14,
+    "left_copies": 14
+  },
+  {
+    "id": 21,
+    "title": "ab",
+    "author": "cd",
+    "rent_price": 23423,
+    "price": 2342,
+    "copies": 22,
+    "left_copies": 22
+  }
+]
