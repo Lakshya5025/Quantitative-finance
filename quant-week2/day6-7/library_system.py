@@ -22,39 +22,7 @@ class InvalidCopies(Exception):
         self.message = "Number of copies must be positive"
         super().__init__(*args)
 
-def memberNumberGenerator():
-    member_number = random.randint(1000000000,9999999999)
-    return member_number 
-            
-def createJSONOfBook(book, book_id):
-    return {
-    "id": book_id + 1 ,
-    "title": book.title,
-    "author": book.author,
-    "rent_price": book.rent_price,
-    "price": book.price,
-    "copies": book.copies,
-    "left_copies": book.copies
-  }
     
-def createJSONOfMember(member):
-    return {
-        "membership_number" : member.membership_number,
-        "name" : member.name,
-        "age" : member.age,
-        "balance" : member.balance,
-        "rented_books" : [],
-        "bought_books" : []
-    }
-
-def getAllBooks():
-    with open(books_records, "r", encoding='utf-8') as f:
-        available_books_list = json.load(f)
-        for book_details in available_books_list:
-            if(book_details['left_copies'] > 0):
-                print(f"Id:{book_details['id']}, {book_details['title']}, {book_details['author']}, Price:{book_details['price']}, Rent:{book_details['rent_price']}")
-  
-
 class Member():
     def __init__(self, name, age, balance):
         self.name = name
@@ -94,7 +62,174 @@ class Book():
             raise InvalidCopies()
                 
 
-print("Operations you can perform:-\n1.Add new book\n2.Add new member\n3.Available Books")
+
+def memberNumberGenerator():
+    member_number = random.randint(1000000000,9999999999)
+    return member_number 
+            
+def createJSONOfBook(book, book_id):
+    return {
+    "id": book_id + 1 ,
+    "title": book.title,
+    "author": book.author,
+    "rent_price": book.rent_price,
+    "price": book.price,
+    "copies": book.copies,
+    "left_copies": book.copies
+  }
+    
+def createJSONOfMember(member):
+    return {
+        "membership_number" : member.membership_number,
+        "name" : member.name,
+        "age" : member.age,
+        "balance" : member.balance,
+        "rented_books" : [],
+        "bought_books" : []
+    }
+    
+def createTransactionJSON(book, type):
+    amount = 0
+    if(type == "rent"):
+        amount = book['rent_price']
+    elif(type == "purchase"):
+        amount = book['price']
+    
+    return {
+        "book_id":book['id'],
+        "book" : book['title'],
+        "type" : type,
+        "amount" : amount,        
+    }
+
+def getAllBooks():
+    with open(books_records, "r", encoding='utf-8') as f:
+        available_books_list = json.load(f)
+        for book_details in available_books_list:
+            if(book_details['left_copies'] > 0):
+                print(f"Id:{book_details['id']}, {book_details['title']}, {book_details['author']}, Price:{book_details['price']}, Rent:{book_details['rent_price']}")
+
+def memberExists(membership_number):
+    flag = False
+    with open(members_records, "r", encoding='utf-8') as f:
+        members = json.load(f)  
+        for member in members: 
+            if(member['membership_number'] == membership_number):
+                flag = True
+                break
+    return flag
+  
+def isBookAvailable(id):
+    flag = False
+    with open(books_records, 'r', encoding='utf-8') as f:
+        books = json.load(f)
+        for book in books:
+            if(book['id'] == id):
+                if(book['left_copies'] > 0):
+                    flag = True
+                    break
+                else:
+                    print("Out of stock")
+                    break
+    return flag
+
+def isBookExists(id):
+    flag = False
+    with open(books_records, 'r', encoding='utf-8') as f:
+        books = json.load(f)
+        for book in books:
+            if(book['id'] == id):
+                flag = True
+                break
+    print("Book exist function")
+    return flag
+
+
+def doesMemberHasBook(id, membership_number):
+    with open(members_records, "r", encoding='utf-8') as f:
+        members = json.load(f)
+        for member in members:
+            if(member['membership_number'] == membership_number):
+                rented_books = member['rented_books']
+                for rented_book in rented_books:
+                    if(rented_book['book_id'] == id): return True
+                return False
+    print("member has book function")
+
+
+def returnRentedBook(membership_number, book_id):
+    if(memberExists(membership_number=membership_number) and isBookExists(id=book_id) and doesMemberHasBook(book_id, membership_number)):
+        print("working fine 0")
+        with open(books_records, "r", encoding='utf-8') as f:
+            books = json.load(f)
+            for book in books:
+                if(book["id"] == book_id):
+                    book["left_copies"] += 1
+        print("Working Fine 1")
+        with open(books_records, "w", encoding="utf-8") as f:
+            json.dump(books, f, indent=2)
+        print("Working Fine 2")
+
+        with open(members_records, "r", encoding="utf-8") as f:
+            members = json.load(f)
+            for member in members:
+                if(member['membership_number'] == membership_number):
+                    rented_books = member['rented_books']
+                    updated_rented_books = []
+                    for rented_book in rented_books:
+                        if(rented_book['book_id'] != book_id):
+                            updated_rented_books.append(rented_book)
+                    member['rented_books'].clear()
+                    for rented_book in updated_rented_books:
+                        member['rented_books'].append(rented_book)
+        print("Working Fine 3")
+        with open(members_records, "w", encoding="utf-8") as f:
+            json.dump(members, f, indent=2)
+        print("Successfully returned")       
+        print("Working Fine 4")
+
+    elif(not doesMemberHasBook(id=book_id, membership_number=membership_number)):
+        print("Member don't have this book")
+    elif(not memberExists(membership_number=membership_number)):
+        print("Member not registered")
+    else:
+        print("Book out of stock")
+
+def updateTransactionInMembersFile(membership_number, book, type):
+    with open(members_records, "r", encoding="utf-8") as f:
+        members = json.load(f)
+        for member in members:
+            if(member['membership_number'] == membership_number):
+                if(type == 'rent'):
+                    member['balance'] -= book["rent_price"]
+                    member["rented_books"].append(createTransactionJSON(book=book, type=type))
+                elif(type == 'purchase'):
+                    member['balance'] -= book["price"]
+                    member["bought_books"].append(createTransactionJSON(book=book, type=type))
+    with open(members_records, "w", encoding='utf-8') as f:
+        json.dump(members, f, indent=2)
+                    
+def rentOrPurchase(id, membership_number, type):
+    if(memberExists(membership_number=membership_number) and isBookAvailable(id=id)):
+        rented_or_bought_book = {}
+        with open(books_records, "r", encoding='utf-8') as f:
+            books = json.load(f)
+            for book in books:
+                if(book['id'] == id):
+                    rented_or_bought_book = book
+                    if(type == "purchase"):
+                        book['copies'] -= 1
+                    book['left_copies'] -= 1
+        with open(books_records, 'w', encoding='utf-8') as f:
+            json.dump(books, f, indent=2)
+        updateTransactionInMembersFile(membership_number=membership_number,book=rented_or_bought_book,type=type )
+        print("Transaction Successfull")
+    elif(not memberExists(membership_number)):
+        print("Member not registered")
+    else :
+        print("Book out of stock")
+
+print("Operations you can perform:-\n1.Add new book\n2.Add new member(Registration fee - 50)\n3.Available Books\n4.Rent book\n5.Purchase book\n6.Return book")
 user_choice = input("Enter you choice: ")
 if(user_choice  == '1'):
     title = input("Enter book title: ")
@@ -121,6 +256,19 @@ elif(user_choice == '2'):
 
 elif(user_choice == '3'):
     getAllBooks()
-
-
-# Implement rent, return and purchase feature
+elif(user_choice == '4'):
+    book_id = int(input("Enter book id: "))
+    membership_number = int(input("Enter you membership number: "))
+    rentOrPurchase(id=book_id, membership_number=membership_number, type="rent")
+    
+elif(user_choice == '5'):
+    book_id = int(input("Enter book id: "))
+    membership_number = int(input("Enter you membership number: "))
+    rentOrPurchase(id=book_id, membership_number=membership_number, type="purchase")
+    
+elif(user_choice == "6"):
+    book_id = int(input("Enter book id: "))
+    membership_number = int(input("Enter you membership number: "))
+    returnRentedBook(membership_number=membership_number, book_id=book_id)
+else:
+    print("Invalid Choice")

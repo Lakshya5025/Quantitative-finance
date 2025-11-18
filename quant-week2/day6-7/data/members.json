@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "membership_number": 6897695787,
+    "name": "Lakshya Gupta",
+    "age": 20,
+    "balance": 9420,
+    "rented_books": [
+      {
+        "book_id": 5,
+        "book": "Sapiens",
+        "type": "rent",
+        "amount": 60
+      }
+    ],
+    "bought_books": [
+      {
+        "book_id": 9,
+        "book": "The Subtle Art of Not Giving a F*ck",
+        "type": "purchase",
+        "amount": 420
+      }
+    ]
+  },
+  {
+    "membership_number": 2502481325,
+    "name": "Tauhid",
+    "age": 20,
+    "balance": 19450,
+    "rented_books": [
+      {
+        "book_id": 3,
+        "book": "The Psychology of Money",
+        "type": "rent",
+        "amount": 40
+      }
+    ],
+    "bought_books": []
+  },
+  {
+    "membership_number": 7861517555,
+    "name": "New member",
+    "age": 33,
+    "balance": 950,
+    "rented_books": [],
+    "bought_books": []
+  }
+]
