@@ -187,6 +187,7 @@ def returnRentedBook(membership_number, book_id):
             json.dump(members, f, indent=2)
         print("Successfully returned")       
         print("Working Fine 4")
+        
 
     elif(not doesMemberHasBook(id=book_id, membership_number=membership_number)):
         print("Member don't have this book")
